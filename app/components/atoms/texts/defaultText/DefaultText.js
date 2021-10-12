@@ -27,7 +27,7 @@ const defaultProps = {
     text: '',
     size: 10,
     color: colors.white,
-    weight: 'Regular',
+    weight: 'bold',
     left: 0,
     marginTop: 0,
     marginBottom: 0,
@@ -56,38 +56,38 @@ const DefaultText = ({
     textDecorationLine,
     textAlign
 }) => {
-    let fontFamily
-    switch (weight) {
-        case 'Bold': {
-            fontFamily = fonts.spoqaBold
-            break;
-        }
-        case 'Light': {
-            fontFamily = fonts.spoqaLight
-            break;
-        }
-        case 'Medium': {
-            fontFamily = fonts.spoqaMedium
-            break;
-        }
-        case 'Regular': {
-            fontFamily = fonts.spoqaRegular
-            break;
-        }
-        case 'Thin': {
-            fontFamily = fonts.spoqaThin
-            break;
-        }
+    // let fontFamily
+    // switch (weight) {
+    //     case 'Bold': {
+    //         fontFamily = fonts.spoqaBold
+    //         break;
+    //     }
+    //     case 'Light': {
+    //         fontFamily = fonts.spoqaLight
+    //         break;
+    //     }
+    //     case 'Medium': {
+    //         fontFamily = fonts.spoqaMedium
+    //         break;
+    //     }
+    //     case 'Regular': {
+    //         fontFamily = fonts.spoqaRegular
+    //         break;
+    //     }
+    //     case 'Thin': {
+    //         fontFamily = fonts.spoqaThin
+    //         break;
+    //     }
     
-        default:
-            break;
-    }
+    //     default:
+    //         break;
+    // }
     return (
         <Text
             style={{
                 fontSize: size,
                 lineHeight: size * 1.3,
-                fontFamily,
+                fontWeight:weight,
                 includeFontPadding: false,
                 color: color,
                 left,

@@ -19,4 +19,5 @@ export default {
   green: '#3AA76D',
   highLight: '#10F545',
   transparency: '#00000000',
+  orange:'#FFA500'
 };

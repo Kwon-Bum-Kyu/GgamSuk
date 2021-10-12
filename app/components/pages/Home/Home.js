@@ -5,7 +5,9 @@ import { StyleSheet, View } from 'react-native';
 // import { Auth } from 'aws-amplify';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import MapView, { Circle, Marker, Polyline } from 'react-native-maps';
-import colors from '../../../common/values/colors'
+import colors from '../../../common/values/colors';
+import Trace from '../../organisms/Trace';
+import Explore from '../../organisms/Explore';
 
 
 
@@ -33,8 +35,8 @@ class Home extends React.Component {
                     title: 'Dog3',
                     description: 'Dog3'
                 },
-
-            ]
+            ],
+            views: 'Explore',
         }
 
 
@@ -56,9 +58,9 @@ class Home extends React.Component {
         // console.log(this.state.lockState);
         return (
             <SafeAreaView style={styles.safeAreaContainer}>
-                <View style={{ flex: 1, backgroundColor: 'red' }}>
+                <View style={{ flex: 1 }}>
                     <MapView
-                        style={{ flex: 3 }}
+                        style={{ flex: 5 }}
                         initialRegion={{
                             latitude: 37.37663124585731,
                             longitude: 127.14918594907691,
@@ -113,10 +115,7 @@ class Home extends React.Component {
                             strokeWidth={3}
                         />
                     </MapView>
-                            <View style={{flex:1, backgroundColor:'blue'}}>
-
-
-                            </View>
+                    {this.state.views == 'Trace'? <Trace/> : <Explore/>}
                 </View>
             </SafeAreaView>
         )

@@ -43,7 +43,7 @@ const SetOfStack = (value) => {
 				},
 				
 			})}
-			tabBarOptions={{ activeTintColor: 'tomato', inactiveTintColor: 'gray' }}
+			// tabBarOptions={{ activeTintColor: 'tomato', inactiveTintColor: 'gray' }}
 		>
         <Tab.Screen 
         	name="TRACE" 

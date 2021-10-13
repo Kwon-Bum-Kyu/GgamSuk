@@ -24,7 +24,6 @@ class Home extends React.Component {
                     description: 'Dog1'
                 },
                 {
-
                     latlng: { latitude: 37.378571395849995, longitude: 127.15227081264658 },
                     title: 'Dog2',
                     description: 'Dog2'
@@ -35,8 +34,21 @@ class Home extends React.Component {
                     title: 'Dog3',
                     description: 'Dog3'
                 },
+
             ],
-            views: 'Explore',
+            circles: [
+               { 
+                   latlng: { latitude: 37.37661347766266, longitude: 127.1515092533156 },
+                   radius: 200,
+                },
+                { 
+                    latlng: { latitude: 37.37661347766266, longitude: 127.1515092533156 },
+                    radius: 500,
+                 },
+
+            ],
+            ismount: false,
+            // views: this.props.route.name,
         }
 
 
@@ -47,20 +59,29 @@ class Home extends React.Component {
 
 
     componentDidMount = async () => {
-
+        // console.log()
+        const{name} = this.props.route
+        let markers = this.state.markers;
+        if(name == "TRACE"){
+            console.log('name', name);
+           
+            markers.splice(1,2)
+        }
+        this.setState({ markers, ismount: true})
+        
     }
 
 
 
     render() {
-
+        const{name} = this.props.route
         // const disp = this.getDisp();
         // console.log(this.state.lockState);
         return (
             <SafeAreaView style={styles.safeAreaContainer}>
                 <View style={{ flex: 1 }}>
                     <MapView
-                        style={{ flex: 5 }}
+                        style={{ flex: 9 }}
                         initialRegion={{
                             latitude: 37.37663124585731,
                             longitude: 127.14918594907691,
@@ -68,7 +89,8 @@ class Home extends React.Component {
                             longitudeDelta: 0.01,
                         }}
                     >
-                        {this.state.markers.map((marker, index) => (
+                        {this.state.ismount &&
+                        this.state.markers.map((marker, index) => (
                             <Marker
                                 key={index}
                                 coordinate={marker.latlng}
@@ -77,16 +99,17 @@ class Home extends React.Component {
                                 image={require('../../../assets/images/png/dogMaker.png')}
                             />
                         ))}
-                        <Circle
-                            center={{ latitude: 37.37661347766266, longitude: 127.1515092533156 }}
-                            radius={500}
-                            lineCap={'butt'}
-                        />
-                        <Circle
-                            center={{ latitude: 37.37661347766266, longitude: 127.1515092533156 }}
-                            radius={200}
-                            lineCap={'butt'}
-                        />
+                        {name == "Explore" &&
+                         this.state.circles.map((item, index) => (
+                            <Circle
+                                key={index}
+                                center={item.latlng}
+                                radius={item.radius}
+                                lineCap={'butt'}
+                            />
+                        ))}
+                      
+                        {name == "TRACE" &&
                         <Polyline
                             coordinates={[
                                 { latitude: 37.37375796844508, longitude: 127.1486597714687},
@@ -114,8 +137,9 @@ class Home extends React.Component {
                             // ]}
                             strokeWidth={3}
                         />
+    }
                     </MapView>
-                    {this.state.views == 'Trace'? <Trace/> : <Explore/>}
+                    {name == "TRACE"? <Trace/> : <Explore/>}
                 </View>
             </SafeAreaView>
         )
